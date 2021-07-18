@@ -10,11 +10,8 @@
     />
     <div class="right category-right">
       <scroll class="scroll-content" ref="scroll">
-        <category-content
-          :categoryList="categoryList"
-          @imgLoad="imgLoad"
-        />
-        <category-screen :goods="categoryScreen"/>
+        <category-content :categoryList="categoryList" @imgLoad="imgLoad" />
+        <category-screen :goods="categoryScreen" />
       </scroll>
     </div>
   </div>
@@ -31,7 +28,7 @@ import Scroll from "components/common/scroll/Scroll";
 
 import CategoryNavBar from "./childComps/CategoryNavBar";
 import CategoryContent from "./childComps/CategoryContent";
-import CategoryScreen from './childComps/CategoryScreen';
+import CategoryScreen from "./childComps/CategoryScreen";
 
 export default {
   name: "Category",
@@ -48,9 +45,9 @@ export default {
       currentIndex: 0,
       categoryList: [],
       categoryScreen: {
-        'pop': [],
-        'new': [],
-        'sell': [],
+        pop: [],
+        new: [],
+        sell: [],
       },
     };
   },
@@ -59,6 +56,10 @@ export default {
     // 请求分类数据
     this._getCategory();
     // 请求分类内容数据
+  },
+  activated() {
+    // 进入页面时刷新组件
+    this.$refs.scroll.refresh();
   },
   methods: {
     /**
@@ -69,7 +70,7 @@ export default {
     categoryClick(index) {
       this.currentIndex = index;
       this._getSubcategory(index);
-      this.$refs.scroll.scrollTo(0, 0, 0)
+      this.$refs.scroll.scrollTo(0, 0, 0);
     },
 
     // 图片加载完成
