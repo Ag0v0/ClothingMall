@@ -31,14 +31,19 @@ export default {
 
 <style scoped>
 .toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   left: 50%;
   top: 50%;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  width: 100%;
   font-size: 16px;
 }
 .toast span {
+
   text-align: center;
   padding: 10px 15px;
   border-radius: 8px;
