@@ -350,9 +350,6 @@ export default {
   border: 1px solid var(--color-light-text);
   color: var(--color-light-text);
 }
-.sizes .items span {
-  width: 60px;
-}
 
 .counter-wrap {
   display: flex;
