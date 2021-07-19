@@ -49,6 +49,7 @@ export default {
         new: [],
         sell: [],
       },
+      saveY: 0,
     };
   },
   mixins: [itemImgListener_Mixin],
@@ -58,8 +59,16 @@ export default {
     // 请求分类内容数据
   },
   activated() {
-    // 进入页面时刷新组件
+    // 进入页面 获取历史滚动高度
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    // 刷新组件
     this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    // 离开页面 记录滚动高度
+    this.saveY = this.$refs.scroll.getScrollY();
+    // 取消全局总线上的事件
+    this.$bus.$off("itemImgLoad", this.itemImgListener);
   },
   methods: {
     /**
