@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="right">
-      <div class="right-item cart" @click="addToCart()">加入购物车</div>
-      <div class="right-item buy">立即购买</div>
+      <div class="right-item cart" @click="openSku(type.cart)">加入购物车</div>
+      <div class="right-item buy" @click="openSku(type.buy)">立即购买</div>
     </div>
   </div>
 </template>
@@ -24,10 +24,18 @@
 <script>
 export default {
   name: "DetailBottomBar",
+  data() {
+    return {
+      type: {
+        cart: 0,
+        buy: 1
+      }
+    }
+  },
   methods: {
-    addToCart() {
-      this.$emit("addToCart");
-    },
+    openSku(type) {
+      this.$emit("openSku", type);
+    }
   },
 };
 </script>

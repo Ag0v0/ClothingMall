@@ -10,6 +10,7 @@ export default {
   [ADD_TO_CART](state, payload) {
       // 添加购物车中选择属性
       payload.isSelected = false;
+      payload.isPurchased = false;
 
       // 如果不存在该 idd 的商品，把商品数据加入数组
       state.cartList.push(payload)

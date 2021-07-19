@@ -1,6 +1,6 @@
 <template>
   <transition name="detail-sku">
-    <div class="detail-sku" v-if="sku && isClickCart">
+    <div class="detail-sku" v-if="sku && isShowSku">
       <div class="mask" @click="offSku()"></div>
       <div class="content">
         <div class="head">
@@ -86,6 +86,7 @@ export default {
       discountShow: false,
       stock: null,
       count: 1,
+      buyProduct: [],
     };
   },
   props: {
@@ -95,9 +96,13 @@ export default {
         return {};
       },
     },
-    isClickCart: {
+    isShowSku: {
       type: Boolean,
       default: false,
+    },
+    skuType: {
+      type: Number,
+      required: true,
     },
     goodsId: {
       type: String,
@@ -185,10 +190,10 @@ export default {
     confirmClick() {
       // 如果没有选择颜色和尺码，弹出提示，并退出事件
       if (this.list.length === 0 || !this.styleId || !this.sizeId) {
-        this.$toast.show('请选择 颜色/款式 尺码');
+        this.$toast.show("请选择 颜色/款式 尺码");
         return;
       }
-      // 获取购物车所需商品信息
+      // 获取 购物车/购买 所需商品信息
       const product = {};
       product.iid = this.goodsId;
       product.title = this.goodsInfo.title;
@@ -198,19 +203,32 @@ export default {
       product.size = this.list[0].size;
       product.quantity = this.count;
 
-      // 将商品添加到购物车
-      this.addCart(product).then((res) => {
-        // 清空选择状态
-        this.styleIndex = null;
-        this.sizeIndex = null;
-        this.styleId = null;
-        this.sizeId = null;
-        this.count = 1;
-        console.log(res);
+      if (this.skuType === 0) {
+        // 将商品添加到购物车
+        this.addCart(product).then((res) => {
+          // 弹出加入购物车提示
+          this.$toast.show(res);
+        });
+      } else if (this.skuType === 1) {
+        console.log("立即购买");
+        // 创建购买清单
+        const productList = [];
+        productList.push(product);
+        // 跳转路由
+        this.$router.push({
+          path: '/buy',
+          query: {
+            productList
+          }
+        })
+      }
 
-        // 弹出加入购物车提示
-        this.$toast.show(res);
-      });
+      // 清空选择状态
+      this.styleIndex = null;
+      this.sizeIndex = null;
+      this.styleId = null;
+      this.sizeId = null;
+      this.count = 1;
     },
   },
 };

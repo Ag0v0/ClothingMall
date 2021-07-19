@@ -1,7 +1,7 @@
 <template>
   <nav-bar class="detail-nav">
-    <div slot="left" class="detail-nav-left" @click="backClick()">
-      <span class="iconfont icon-back"></span>
+    <div slot="left" class="detail-nav-left">
+      <span class="iconfont icon-back" @click="backClick()"></span>
     </div>
     <div slot="center" class="tab">
       <div

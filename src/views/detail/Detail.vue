@@ -17,11 +17,12 @@
       <goods-list :goods="recommends" ref="recommend" />
     </scroll>
     <back-top @click.native="backTopClick()" v-show="backTopShow" />
-    <detail-bottom-bar @addToCart="addToCart()" />
+    <detail-bottom-bar @openSku="openSku" />
     <detail-sku
       ref="sku"
       :sku="sku"
-      :isClickCart="isClickCart"
+      :isShowSku="isShowSku"
+      :skuType="skuType"
       :goodsId="goodsId"
       :goodsInfo="goodsInfo"
       @offSku="offSku"
@@ -84,7 +85,8 @@ export default {
       themeTopY: [],
       getThemeTopY: null,
       tabIndex: 0,
-      isClickCart: false,
+      isShowSku: false,
+      skuType: 0,
       sku: null,
     };
   },
@@ -145,12 +147,13 @@ export default {
       this.$refs.scroll.scrollTo(0, -this.themeTopY[index], 500);
     },
     // 点击加入购物车
-    addToCart() {
-      this.isClickCart = true;
+    openSku(type) {
+      this.isShowSku = true;
+      this.skuType = type;
     },
     // 关闭sku
     offSku() {
-      this.isClickCart = false;
+      this.isShowSku = false;
     },
 
     /**

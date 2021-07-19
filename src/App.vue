@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive exclude="Detail">
+    <keep-alive exclude="Detail, Buy">
       <router-view />
     </keep-alive>
     <main-tab-bar />
@@ -20,4 +20,7 @@ export default {
 
 <style>
 @import url("assets/css/base.css");
+#app {
+  touch-action: none;
+}
 </style>

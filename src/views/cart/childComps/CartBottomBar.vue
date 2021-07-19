@@ -98,6 +98,26 @@ export default {
         this.$toast.show("请选择商品！");
         return;
       }
+      // 设置购物车中已选择商品的 isPurchased 为 true
+      this.cartList
+        .filter((item) => item.isSelected)
+        .forEach((item) => {
+          item.isPurchased = true;
+        });
+
+      // 创建购买清单
+      const productList = [];
+      const product = this.cartList.filter((item) => item.isSelected);
+      productList.push(...product);
+      console.log(productList);
+
+      // 跳转购买页面
+      this.$router.push({
+        path: "/buy",
+        query: {
+          productList,
+        },
+      });
     },
   },
 };
