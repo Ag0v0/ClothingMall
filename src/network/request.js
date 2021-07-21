@@ -6,7 +6,8 @@ export function request(config) {
     timeout: 5000
   })
   // 请求 拦截器
-  instance.interceptors.request.use(config => {
+  instance.interceptors.request.use(
+    config => {
       return config
     },
     err => {
@@ -14,7 +15,8 @@ export function request(config) {
     }
   );
   // 响应 拦截器
-  instance.interceptors.response.use(res => {
+  instance.interceptors.response.use(
+    res => {
       return res.data;
     },
     err => {

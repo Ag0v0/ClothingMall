@@ -91,7 +91,7 @@ export default {
     };
   },
   mixins: [itemImgListener_Mixin, backTop_Mixin],
-  created() {
+  mounted() {
     this.getGoodsId();
     this._getDetail();
     this._getRecommendGoods();

@@ -53,7 +53,7 @@ export default {
     };
   },
   mixins: [itemImgListener_Mixin],
-  created() {
+  mounted() {
     // 请求分类数据
     this._getCategory();
     // 请求分类内容数据

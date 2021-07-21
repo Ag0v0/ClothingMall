@@ -90,7 +90,7 @@ export default {
       return this.goods[this.currentType].list;
     },
   },
-  created() {
+  mounted() {
     // 获取 轮播图 和 推荐 数据
     this._getHomeMultidata();
 

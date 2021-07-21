@@ -33,7 +33,7 @@ export default {
     // 获取购买清单
     this.getProduct();
   },
-  created() {
+  mounted() {
     // 获取购买清单
     this.getProduct();
   },
