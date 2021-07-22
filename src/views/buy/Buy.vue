@@ -29,11 +29,11 @@ export default {
       productList: [],
     };
   },
+    mounted() {
+      // 获取购买清单
+      this.getProduct();
+    },
   activated() {
-    // 获取购买清单
-    this.getProduct();
-  },
-  mounted() {
     // 获取购买清单
     this.getProduct();
   },

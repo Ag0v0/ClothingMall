@@ -210,7 +210,6 @@ export default {
           this.$toast.show(res);
         });
       } else if (this.skuType === 1) {
-        console.log("立即购买");
         // 创建购买清单
         const productList = [];
         productList.push(product);

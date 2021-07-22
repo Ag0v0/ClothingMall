@@ -61,14 +61,6 @@ export default {
       this.startTimer();
     }, 200);
   },
-  activated() {
-    // 开启定时器
-    this.startTimer();
-  },
-  deactivated() {
-    // 停止定时器
-    this.stopTimer();
-  },
   methods: {
     /**
      * 定时器操作
